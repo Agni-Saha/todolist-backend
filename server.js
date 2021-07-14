@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 const uri = "mongodb+srv://agnisaha337599:IAMAWESOME.@cluster0.dbq7u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-mongoose.connect(uri, {
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -93,6 +93,6 @@ todoRoutes.route("/delete/:id").delete((req, res) => {
 
 
 app.use("/todoDB", todoRoutes)
-app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`)
+app.listen(process.env.PORT || 3001, () => {
+    console.log(`server is running on port ${process.env.PORT}`)
 })
