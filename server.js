@@ -2,6 +2,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const mongoose = require("mongoose")
+const { MongoClient } = require('mongodb');
 
 const PORT = 3001
 const todoRoutes = express.Router()
@@ -12,8 +13,11 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-mongoose.connect("mongodb://127.0.0.1:27017/todoDB", {
-    useNewUrlParser: true
+const uri = "mongodb+srv://agnisaha337599:IAMAWESOME.@cluster0.dbq7u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
 
 const connection = mongoose.connection
